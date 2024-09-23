@@ -1,0 +1,27 @@
+{
+    "name": "automationstore",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "loginRegression": "npx playwright test tests/login.spec.js",
+        "registerRegression": "npx playwright test tests/register.spec.js",
+        "forgotPasswordRegression": "npx playwright test tests/forgotpassword.spec.js",
+        "forgotLoginnameRegression": "npx playwright test tests/forgotLoginname.spec.js",
+        "changePasswordRegression": "npx playwright test tests/changePassword.spec.js",
+        "changeAccountDetailsRegression": "npx playwright test tests/changeAccountDetails.spec.js",
+        "manageAddressRegression": "npx playwright test tests/manageAddress.spec.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@playwright/test": "^1.47.1",
+        "@types/node": "^22.5.5",
+        "allure-playwright": "^3.0.1"
+    },
+    "dependencies": {
+        "@cucumber/cucumber": "^11.0.1",
+        "unique-names-generator": "^4.7.1"
+    }
+}
