@@ -4,13 +4,13 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "loginRegression": "npx playwright test tests/login.spec.js",
-        "registerRegression": "npx playwright test tests/register.spec.js",
-        "forgotPasswordRegression": "npx playwright test tests/forgotpassword.spec.js",
-        "forgotLoginnameRegression": "npx playwright test tests/forgotLoginname.spec.js",
-        "changePasswordRegression": "npx playwright test tests/changePassword.spec.js",
-        "changeAccountDetailsRegression": "npx playwright test tests/changeAccountDetails.spec.js",
-        "manageAddressRegression": "npx playwright test tests/manageAddress.spec.js"
+        "login": "npx playwright test tests/login.spec.js",
+        "register": "npx playwright test tests/register.spec.js",
+        "forgot password": "npx playwright test tests/forgotpassword.spec.js",
+        "forgot loginname": "npx playwright test tests/forgotLoginname.spec.js",
+        "change password": "npx playwright test tests/changePassword.spec.js",
+        "change account details": "npx playwright test tests/changeAccountDetails.spec.js",
+        "manage address": "npx playwright test tests/manageAddress.spec.js"
     },
     "keywords": [],
     "author": "",
