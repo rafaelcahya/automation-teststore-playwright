@@ -29,9 +29,9 @@ module.exports = defineConfig({
 
         /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
         trace: "on-first-retry",
-        browserName: 'chromium',
-        screenshot: 'on',
-        headless : true,
+        browserName: "chromium",
+        screenshot: "on",
+        headless: false,
     },
 
     /* Configure projects for major browsers */
@@ -45,7 +45,10 @@ module.exports = defineConfig({
             name: "firefox",
             use: { ...devices["Desktop Firefox"] },
         },
-
+        {
+            name: "Microsoft Edge",
+            use: { ...devices["Desktop Edge"], channel: "msedge" },
+        },
         // {
         //     name: "webkit",
         //     use: { ...devices["Desktop Safari"] },
