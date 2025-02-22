@@ -5,13 +5,13 @@
     "main": "index.js",
     "scripts": {
         "test": "npx playwright test",
-        "login": "npx playwright test tests/login.spec.js --project=%BROWSER%",
-        "register": "npx playwright test tests/register.spec.js --project=%BROWSER%",
-        "forgot password": "npx playwright test tests/forgotpassword.spec.js --project=%BROWSER%",
-        "forgot loginname": "npx playwright test tests/forgotLoginname.spec.js --project=%BROWSER%",
-        "change password": "npx playwright test tests/changePassword.spec.js --project=%BROWSER%",
-        "change account details": "npx playwright test tests/changeAccountDetails.spec.js --project=%BROWSER%",
-        "manage address": "npx playwright test tests/manageAddress.spec.js --project=%BROWSER%"
+        "LOGIN": "npx playwright test tests/login.spec.js --project=%BROWSER%",
+        "REGISTER": "npx playwright test tests/register.spec.js --project=%BROWSER%",
+        "FORGOTPASSWORD": "npx playwright test tests/forgotpassword.spec.js --project=%BROWSER%",
+        "FORGOTLOGINNAME": "npx playwright test tests/forgotLoginname.spec.js --project=%BROWSER%",
+        "CHANGEPASSWORD": "npx playwright test tests/changePassword.spec.js --project=%BROWSER%",
+        "CHANGEPACCOUNTDETIALS": "npx playwright test tests/changeAccountDetails.spec.js --project=%BROWSER%",
+        "MANAGEADDRESS": "npx playwright test tests/manageAddress.spec.js --project=%BROWSER%"
     },
     "keywords": [],
     "author": "",
