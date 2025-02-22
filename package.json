@@ -10,7 +10,7 @@
         "FORGOTPASSWORD": "npx playwright test tests/forgotpassword.spec.js --project=%BROWSER%",
         "FORGOTLOGINNAME": "npx playwright test tests/forgotLoginname.spec.js --project=%BROWSER%",
         "CHANGEPASSWORD": "npx playwright test tests/changePassword.spec.js --project=%BROWSER%",
-        "CHANGEPACCOUNTDETIALS": "npx playwright test tests/changeAccountDetails.spec.js --project=%BROWSER%",
+        "CHANGEACCOUNTDETAILS": "npx playwright test tests/changeAccountDetails.spec.js --project=%BROWSER%",
         "MANAGEADDRESS": "npx playwright test tests/manageAddress.spec.js --project=%BROWSER%"
     },
     "keywords": [],
