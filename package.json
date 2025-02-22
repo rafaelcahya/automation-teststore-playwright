@@ -4,13 +4,14 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "login": "npx playwright test tests/login.spec.js",
-        "register": "npx playwright test tests/register.spec.js",
-        "forgot password": "npx playwright test tests/forgotpassword.spec.js",
-        "forgot loginname": "npx playwright test tests/forgotLoginname.spec.js",
-        "change password": "npx playwright test tests/changePassword.spec.js",
-        "change account details": "npx playwright test tests/changeAccountDetails.spec.js",
-        "manage address": "npx playwright test tests/manageAddress.spec.js"
+        "test": "npx playwright test",
+        "login": "npx playwright test tests/login.spec.js --project=%BROWSER%",
+        "register": "npx playwright test tests/register.spec.js --project=%BROWSER%",
+        "forgot password": "npx playwright test tests/forgotpassword.spec.js --project=%BROWSER%",
+        "forgot loginname": "npx playwright test tests/forgotLoginname.spec.js --project=%BROWSER%",
+        "change password": "npx playwright test tests/changePassword.spec.js --project=%BROWSER%",
+        "change account details": "npx playwright test tests/changeAccountDetails.spec.js --project=%BROWSER%",
+        "manage address": "npx playwright test tests/manageAddress.spec.js --project=%BROWSER%"
     },
     "keywords": [],
     "author": "",
@@ -18,7 +19,8 @@
     "devDependencies": {
         "@playwright/test": "^1.47.1",
         "@types/node": "^22.5.5",
-        "allure-playwright": "^3.0.1"
+        "allure-playwright": "^3.0.1",
+        "dotenv": "^16.4.7"
     },
     "dependencies": {
         "@cucumber/cucumber": "^11.0.1",

@@ -3,7 +3,7 @@ import Navbar from "../component/navbar.comp";
 import AccountLoginPage from "../pages/accountLogin.page";
 import generateData from "../helper/generateData";
 
-test.describe("Register Tests", () => {
+test.describe("Login Tests", () => {
     test.beforeEach(async ({ page }) => {
         const navbar = new Navbar(page);
         await page.goto("/");

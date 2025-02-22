@@ -1,5 +1,6 @@
 // @ts-check
 const { defineConfig, devices } = require("@playwright/test");
+require('dotenv').config();
 
 /**
  * Read environment variables from file.
@@ -29,7 +30,7 @@ module.exports = defineConfig({
 
         /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
         trace: "on-first-retry",
-        browserName: "chromium",
+        // browserName: "chromium",
         screenshot: "on",
         headless: false,
     },
@@ -37,7 +38,7 @@ module.exports = defineConfig({
     /* Configure projects for major browsers */
     projects: [
         {
-            name: "chromium",
+            name: "chrome",
             use: { ...devices["Desktop Chrome"] },
         },
 
@@ -46,7 +47,7 @@ module.exports = defineConfig({
             use: { ...devices["Desktop Firefox"] },
         },
         {
-            name: "Microsoft Edge",
+            name: "edge",
             use: { ...devices["Desktop Edge"], channel: "msedge" },
         },
         // {

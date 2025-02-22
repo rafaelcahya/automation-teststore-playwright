@@ -4,7 +4,7 @@ import AccountLoginPage from "../pages/accountLogin.page";
 import generateData from "../helper/generateData";
 import ForgotPassword from "../pages/forgotpassword.page";
 
-test.describe("Register Tests", () => {
+test.describe("Forgot Password Tests", () => {
     test.beforeEach(async ({ page }) => {
         const navbar = new Navbar(page);
         const accountLoginPage = new AccountLoginPage(page);
