@@ -1,3 +1,7 @@
+import dotenv from "dotenv";
+
+dotenv.config();
+
 export default class RegisterPage {
     constructor(page) {
         this.page = page;
@@ -14,7 +18,9 @@ export default class RegisterPage {
         this.regionOption = page.locator("#AccountFrm_zone_id option");
         this.zipCodeField = page.locator("id=AccountFrm_postcode");
         this.countryField = page.locator("id=AccountFrm_country_id");
-        this.countryFieldOptions = page.locator("#AccountFrm_country_id option");
+        this.countryFieldOptions = page.locator(
+            "#AccountFrm_country_id option"
+        );
         this.loginNameField = page.locator("#AccountFrm_loginname");
         this.passwordField = page.locator("#AccountFrm_password");
         this.confirmPasswordField = page.locator("#AccountFrm_confirm");
@@ -22,40 +28,45 @@ export default class RegisterPage {
         this.noOptionSubscribe = page.locator("#AccountFrm_newsletter0");
         this.agreePP = page.locator("#AccountFrm_agree");
         this.minMaxFirstnameMsg = page.locator(
-            "text=First Name must be between 1 and 32 characters!"
+            `text=${process.env.MAXCHAR_FIRSTNAME_REGISTER_MSG}`
         );
         this.minMaxLastnameMsg = page.locator(
-            "text=Last Name must be between 1 and 32 characters!"
+            `text=${process.env.MAXCHAR_LASTNAME_REGISTER_MSG}`
         );
         this.invalidEmailMsg = page.locator(
-            "text=Email Address does not appear to be valid!"
-        );
-        this.emptyRegionMsg = page.locator(
-            "text=Please select a region / state!"
+            `text=${process.env.INVALID_EMAIL_REGISTER_MSG}`
         );
         this.minMaxFirstAddressMsg = page.locator(
-            "text=Address 1 must be between 3 and 128 characters!"
+            `text=${process.env.MAXCHAR_FIRST_ADDRESS_REGISTER_MSG}`
         );
         this.minMaxCityMsg = page.locator(
-            "text=City must be between 3 and 128 characters!"
+            `text=${process.env.MAXCHAR_CITY_REGISTER_MSG}`
+        );
+        this.emptyRegionMsg = page.locator(
+            `text=${process.env.EMPTY_REGION_REGISTER_MSG}`
         );
         this.minMaxZipMsg = page.locator(
-            "text=Zip/postal code must be between 3 and 10 characters!"
+            `text=${process.env.MAXCHAR_ZIP_REGISTER_MSG}`
         );
         this.minMaxLoginnameMsg = page.locator(
-            "text=Login name must be alphanumeric only and between 5 and 64 characters!"
+            `text=${process.env.MAXCHAR_LOGINNAME_REGISTER_MSG}`
         );
         this.duplicateLoginnameMsg = page.locator(
-            "text=This login name is not available. Try different login name!"
+            `text=${process.env.REGISTERED_LOGINNAME_REGISTER_MSG}`
         );
         this.minMaxPasswordMsg = page.locator(
-            "text=Password must be between 4 and 20 characters!"
+            `text=${process.env.MAXCHAR_PASSWORD_REGISTER_MSG}`
         );
         this.notMatchConfirmPasswordMsg = page.locator(
-            "text=Password confirmation does not match password!"
+            `text=${process.env.MATCH_PASSWORD_REGISTER_MSG}`
+        );
+        this.notSelectedPPMsg = page.locator(
+            `text=${process.env.NOT_SELECTED_PP_REGISTER_MSG}`
         );
         this.continueBtn = page.locator("button:has-text('Continue')");
-        this.successRegisterMsg = page.locator("text=Your Account Has Been Created!")
+        this.successRegisterMsg = page.locator(
+            `text=${process.env.SUCCESS_REGISTER_MSG}`
+        );
     }
 
     async clickContinueBtn() {

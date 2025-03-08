@@ -1,19 +1,17 @@
-import { animals, uniqueNamesGenerator } from "unique-names-generator";
-
 function generateNumber() {
     return parseInt(Math.random().toFixed(8).replace("0.", ""));
 }
 
-function generateUniqueName() {
-    const randomName = uniqueNamesGenerator({
-        dictionaries: [animals],
-        length: 1,
-    });
-    return randomName;
+function generateRandomString() {
+    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    let result = "";
+    for (let i = 0; i < 10; i++) {
+        result += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return result;
 }
-
 
 export default {
     generateNumber,
-    generateUniqueName
+    generateRandomString,
 };

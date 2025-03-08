@@ -1,6 +1,9 @@
 // @ts-check
 const { defineConfig, devices } = require("@playwright/test");
-require('dotenv').config();
+import dotenv from "dotenv";
+import path from "path";
+
+dotenv.config({ path: path.resolve(__dirname, ".env") });
 
 /**
  * Read environment variables from file.
@@ -14,7 +17,7 @@ require('dotenv').config();
 module.exports = defineConfig({
     testDir: "./tests",
     /* Run tests in files in parallel */
-    fullyParallel: true,
+    fullyParallel: false,
     /* Fail the build on CI if you accidentally left test.only in the source code. */
     forbidOnly: !!process.env.CI,
     /* Retry on CI only */
@@ -32,7 +35,7 @@ module.exports = defineConfig({
         trace: "on-first-retry",
         // browserName: "chromium",
         screenshot: "on",
-        headless: false,
+        headless: true,
     },
 
     /* Configure projects for major browsers */

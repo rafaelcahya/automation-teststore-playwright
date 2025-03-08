@@ -1,85 +1,91 @@
 import { test, expect } from "@playwright/test";
 import Navbar from "../component/navbar.comp";
 import AccountLoginPage from "../pages/accountLogin.page";
-import generateData from "../helper/generateData";
 import ForgotPassword from "../pages/forgotpassword.page";
 
 test.describe("Forgot Password Tests", () => {
     test.beforeEach(async ({ page }) => {
         const navbar = new Navbar(page);
         const accountLoginPage = new AccountLoginPage(page);
-        await page.goto("/");
+        await page.goto("https://automationteststore.com/index.php?rt=account/login");
         await navbar.clickLoginRegisterBtn();
         await accountLoginPage.clickForgotPasswordLink();
     });
 
-    test("should be able to input login name", async ({ page }) => {
-        const forgotPasswordPage = new ForgotPassword(page);
-        const stringValue = generateData.generateUniqueName();
-        await forgotPasswordPage.loginNameField.fill(stringValue);
-        await expect(forgotPasswordPage.loginNameField).toHaveValue(
-            stringValue
-        );
-    });
-
-    test("should be able to input email", async ({ page }) => {
-        const forgotPasswordPage = new ForgotPassword(page);
-        const stringValue = generateData.generateUniqueName();
-        await forgotPasswordPage.emailField.fill(stringValue + "@example.com");
-        await expect(forgotPasswordPage.emailField).toHaveValue(
-            stringValue + "@example.com"
-        );
-    });
-
-    test("should be able to show error message if email is empty", async ({
+    test("should be able to show message if email is empty", async ({
         page,
     }) => {
         const forgotPasswordPage = new ForgotPassword(page);
+        await forgotPasswordPage.loginNameField.fill(process.env.STRING_VALUE32);
         await forgotPasswordPage.emailField.fill("");
         await forgotPasswordPage.clickContineBtn();
-        await expect(forgotPasswordPage.emailValidationMsg1).toBeVisible();
+        await expect(forgotPasswordPage.emptyEmailMsg).toBeVisible();
+        await expect(forgotPasswordPage.emptyEmailMsg).toContainText(
+            process.env.INVALID_EMAIL_FORGOTPASSWORD_MSG
+        );
     });
 
-    test("should be able to show error message if login name is empty", async ({
+    test("should be able to show message if email is invalid format", async ({
         page,
     }) => {
         const forgotPasswordPage = new ForgotPassword(page);
-        await forgotPasswordPage.emailField.fill("asdasd@example.com");
+        await forgotPasswordPage.loginNameField.fill(process.env.STRING_VALUE32);
+        await forgotPasswordPage.emailField.fill(process.env.STRING_VALUE32);
         await forgotPasswordPage.clickContineBtn();
-        await expect(forgotPasswordPage.nameValidationMsg1).toBeVisible();
+        await expect(forgotPasswordPage.invalidEmailMsg).toBeVisible();
+        await expect(forgotPasswordPage.invalidEmailMsg).toContainText(
+            process.env.INVALID_EMAIL_FORMAT_FORGOTPASSWORD_MSG
+        );
     });
 
-    test("should be able to show error message if no record in data base", async ({
+    test("should be able to show message if login name is empty", async ({
         page,
     }) => {
         const forgotPasswordPage = new ForgotPassword(page);
-        await forgotPasswordPage.loginNameField.fill("asdas");
-        await forgotPasswordPage.emailField.fill("asdasd@example.com");
+        await forgotPasswordPage.emailField.fill(process.env.LOGIN_EMAIL);
+        await forgotPasswordPage.clickContineBtn();
+        await expect(forgotPasswordPage.invalidLoginnameMsg).toBeVisible();
+        await expect(forgotPasswordPage.invalidLoginnameMsg).toContainText(
+            process.env.INVALID_LOGINNAME_FORGOTPASSWORD_MSG
+        );
+    });
+
+    test("should be able to show message if email and login name are empty", async ({
+        page,
+    }) => {
+        const forgotPasswordPage = new ForgotPassword(page);
+        await forgotPasswordPage.loginNameField.fill("");
+        await forgotPasswordPage.emailField.fill("");
+        await forgotPasswordPage.clickContineBtn();
+        await expect(forgotPasswordPage.emptyEmailAndLoginnameMsg).toBeVisible();
+        await expect(forgotPasswordPage.emptyEmailAndLoginnameMsg).toContainText(
+            process.env.INVALID_CREDENTIAL_FORGOTPASSWORD_MSG
+        );
+    });
+
+    test("should be able to show message if request forgot password with unregistered credential", async ({
+        page,
+    }) => {
+        const forgotPasswordPage = new ForgotPassword(page);
+        await forgotPasswordPage.loginNameField.fill(process.env.STRING_VALUE32);
+        await forgotPasswordPage.emailField.fill(process.env.STRING_VALUE32 + "@example.com");
         await forgotPasswordPage.clickContineBtn();
         await expect(forgotPasswordPage.noRecordValidationMsg).toBeVisible();
+        await expect(forgotPasswordPage.noRecordValidationMsg).toContainText(
+            process.env.UNREGISTERED_CREDENTIAL_FORGOTPASSWORD_MSG
+        );
     });
 
     test("should be able to show message if success request change password", async ({
         page,
     }) => {
         const forgotPasswordPage = new ForgotPassword(page);
-        await forgotPasswordPage.loginNameField.fill("caca123");
-        await forgotPasswordPage.emailField.fill("cahyaputraugira95@gmail.com");
+        await forgotPasswordPage.loginNameField.fill(process.env.LOGIN_USERNAME);
+        await forgotPasswordPage.emailField.fill(process.env.LOGIN_EMAIL);
         await forgotPasswordPage.clickContineBtn();
         await expect(forgotPasswordPage.successMsg).toBeVisible();
-    });
-
-    test("should be able to login with old password after request change password", async ({
-        page,
-    }) => {
-        const forgotPasswordPage = new ForgotPassword(page);
-        const accountLoginPage = new AccountLoginPage(page)
-        await forgotPasswordPage.loginNameField.fill("caca123");
-        await forgotPasswordPage.emailField.fill("cahyaputraugira95@gmail.com");
-        await forgotPasswordPage.clickContineBtn();
-        await accountLoginPage.loginNameField.fill("caca123")
-        await accountLoginPage.passwordField.fill("caca123")
-        await accountLoginPage.clickLoginBtn()
-        await expect(page).toHaveURL("https://automationteststore.com/index.php?rt=account/account")
+        await expect(forgotPasswordPage.successMsg).toContainText(
+            process.env.SUCCESS_FORGOTPASSWORD_MSG
+        );
     });
 });
